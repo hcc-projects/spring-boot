@@ -88,7 +88,7 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * Class that can be used to bootstrap and launch a Spring application from a Java main
  * method. By default class will perform the following steps to bootstrap your
  * application:
- 用于启动和从java main方法加载Spring上下文的类
+ * 用于启动和从java main方法加载Spring上下文的类。默认情况下类将执行以下步骤启动您的应用
  *
  * <ul>
  * <li>Create an appropriate {@link ApplicationContext} instance (depending on your
