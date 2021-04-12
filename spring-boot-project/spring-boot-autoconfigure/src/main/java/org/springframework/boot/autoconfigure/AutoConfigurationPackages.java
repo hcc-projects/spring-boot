@@ -87,6 +87,8 @@ public abstract class AutoConfigurationPackages {
 	 * you don't call this method directly, but instead rely on the default convention
 	 * where the package name is set from your {@code @EnableAutoConfiguration}
 	 * configuration class or classes.
+	 * 以编程方式注册自动配置包名。后续的调用将给定的包名增加到已经注册的包名中。
+	 * 你可以使用这个方法人工定义将被
 	 * @param registry the bean definition registry
 	 * @param packageNames the package names to set
 	 */
@@ -103,6 +105,7 @@ public abstract class AutoConfigurationPackages {
 	/**
 	 * {@link ImportBeanDefinitionRegistrar} to store the base package from the importing
 	 * configuration.
+	 * ImportBeanDefinitionRegistrar来存储导入的基本包配置
 	 */
 	static class Registrar implements ImportBeanDefinitionRegistrar, DeterminableImports {
 
