@@ -99,6 +99,7 @@ public final class ConditionEvaluationReport {
 
 	/**
 	 * Records the names of the classes that are candidates for condition evaluation.
+	 * 记录
 	 * @param evaluationCandidates the names of the classes whose conditions will be
 	 * evaluated
 	 */

@@ -58,6 +58,7 @@ public abstract class AutoConfigurationPackages {
 	/**
 	 * Determine if the auto-configuration base packages for the given bean factory are
 	 * available.
+	 * 判断给定的bean工厂的自动配置基础包是否有用
 	 * @param beanFactory the source bean factory
 	 * @return true if there are auto-config packages available
 	 */
@@ -67,6 +68,7 @@ public abstract class AutoConfigurationPackages {
 
 	/**
 	 * Return the auto-configuration base packages for the given bean factory.
+	 * 从给定的bean工厂中返回自动配置基础包
 	 * @param beanFactory the source bean factory
 	 * @return a list of auto-configuration packages
 	 * @throws IllegalStateException if auto-configuration is not enabled
