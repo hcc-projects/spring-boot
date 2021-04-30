@@ -87,7 +87,9 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
+//将主配置类所在的包及子包里面所有的组件扫描加载到Spring容器中
 @AutoConfigurationPackage
+//通过selectImports将自动配置类xxxAutoConfiguration导入到容器中
 @Import(AutoConfigurationImportSelector.class)
 public @interface EnableAutoConfiguration {
 

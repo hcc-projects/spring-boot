@@ -26,6 +26,7 @@ import org.springframework.util.Assert;
 /**
  * A simple object registry that is available during startup and {@link Environment}
  * post-processing up to the point that the {@link ApplicationContext} is prepared.
+ * 
  * <p>
  * Can be used to register instances that may be expensive to create, or need to be shared
  * before the {@link ApplicationContext} is available.

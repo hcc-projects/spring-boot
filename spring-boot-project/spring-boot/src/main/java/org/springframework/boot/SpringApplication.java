@@ -93,15 +93,19 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * <ul>
  * <li>Create an appropriate {@link ApplicationContext} instance (depending on your
  * classpath)</li>
+ * 创建适当的应用上下文实例（依赖你的classpath）
  * <li>Register a {@link CommandLinePropertySource} to expose command line arguments as
  * Spring properties</li>
+ * 注册一个CommandLinePropertySource暴露命令行参数作为spring属性
  * <li>Refresh the application context, loading all singleton beans</li>
+ * 刷新应用上下文，加载所有的单例bean
  * <li>Trigger any {@link CommandLineRunner} beans</li>
+ * 触发任何CommandLineRunner 的bean
  * </ul>
  *
  * In most circumstances the static {@link #run(Class, String[])} method can be called
  * directly from your {@literal main} method to bootstrap your application:
- *
+ * 在大多数情况下，静态的run方法可以从你的main方法直接调用 来启动你的应用
  * <pre class="code">
  * &#064;Configuration
  * &#064;EnableAutoConfiguration
@@ -118,6 +122,7 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * <p>
  * For more advanced configuration a {@link SpringApplication} instance can be created and
  * customized before being run:
+ * 作为一个更高级的配置，应用上下文可以被创建和定制化在执行之前：
  *
  * <pre class="code">
  * public static void main(String[] args) {
@@ -130,12 +135,17 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * {@link SpringApplication}s can read beans from a variety of different sources. It is
  * generally recommended that a single {@code @Configuration} class is used to bootstrap
  * your application, however, you may also set {@link #getSources() sources} from:
+ * spring应用可以从多样的不同的资源中读取bean。一般建议使用个简单的@Configuration类来启动你的应用，
+ * 但是，你可能设置来自以下的资源
  * <ul>
  * <li>The fully qualified class name to be loaded by
  * {@link AnnotatedBeanDefinitionReader}</li>
+ * 通过AnnotatedBeanDefinitionReader加载的全限定名称
  * <li>The location of an XML resource to be loaded by {@link XmlBeanDefinitionReader}, or
  * a groovy script to be loaded by {@link GroovyBeanDefinitionReader}</li>
+ * XmlBeanDefinitionReader通过XML资源的位置加载，或GroovyBeanDefinitionReader脚本的位置取加载
  * <li>The name of a package to be scanned by {@link ClassPathBeanDefinitionScanner}</li>
+ * ClassPathBeanDefinitionScanner通过包名去扫描
  * </ul>
  *
  * Configuration properties are also bound to the {@link SpringApplication}. This makes it
@@ -143,6 +153,7 @@ import org.springframework.web.context.support.StandardServletEnvironment;
  * sources ("spring.main.sources" - a CSV list) the flag to indicate a web environment
  * ("spring.main.web-application-type=none") or the flag to switch off the banner
  * ("spring.main.banner-mode=off").
+ * 配置属性也绑定到spring上下文中。这让动态设置spring上下文属性变得有可能，像额外的属性。。。
  *
  * @author Phillip Webb
  * @author Dave Syer
@@ -258,6 +269,7 @@ public class SpringApplication {
 	 * beans from the specified primary sources (see {@link SpringApplication class-level}
 	 * documentation for details. The instance can be customized before calling
 	 * {@link #run(String...)}.
+	 * 创建一个新的Spring上下文实例。应用上下文将从指定的主要来源加载bean
 	 * @param primarySources the primary bean sources
 	 * @see #run(Class, String[])
 	 * @see #SpringApplication(ResourceLoader, Class...)
@@ -279,12 +291,18 @@ public class SpringApplication {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {
+		//初始化类加载器 为null
 		this.resourceLoader = resourceLoader;
 		Assert.notNull(primarySources, "PrimarySources must not be null");
+		//初始化主要资源 就是启动的main方法
 		this.primarySources = new LinkedHashSet<>(Arrays.asList(primarySources));
+		//推断当前应用类型 一般都是Servlet
 		this.webApplicationType = WebApplicationType.deduceFromClasspath();
+		//获取META-INF/spring.factories中Bootstrapper的实现类放在bootstrappers中 供后续对BootstrapRegistry使用之前进行回调
 		this.bootstrappers = new ArrayList<>(getSpringFactoriesInstances(Bootstrapper.class));
+		//获取META-INF/spring.factories中ApplicationContextInitializer的实现类 后续在Refresh之前初始化上下文
 		setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class));
+		//获取META-INF/spring.factories中ApplicationListener的实现类 为后续发布各种事件
 		setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));
 		this.mainApplicationClass = deduceMainApplicationClass();
 	}
