@@ -25,8 +25,10 @@ import org.springframework.core.env.Environment;
  * A simple bootstrap context that is available during startup and {@link Environment}
  * post-processing up to the point that the {@link ApplicationContext} is prepared.
  * <p>
+ * 一个简单的启动上下文，他在启动和环境后置处理可用，直到应用上下文已经准备好
  * Provides lazy access to singletons that may be expensive to create, or need to be
  * shared before the {@link ApplicationContext} is available.
+ * 提供对单例的延迟访问，单例可能创建太昂贵或需要在应用上下文可用前被共享
  *
  * @author Phillip Webb
  * @since 2.4.0

@@ -32,6 +32,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 /**
  * {@link SmartApplicationListener} used to trigger {@link EnvironmentPostProcessor
  * EnvironmentPostProcessors} registered in the {@code spring.factories} file.
+ * SmartApplicationListener用于触发EnvironmentPostProcessor注册 在spring.factories文件中
  *
  * @author Phillip Webb
  * @since 2.4.0

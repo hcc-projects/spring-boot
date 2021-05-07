@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
 
 /**
  * Default {@link ConfigurableBootstrapContext} implementation.
- *
+ * ConfigurableBootstrapContext的默认实现类
  * @author Phillip Webb
  * @since 2.4.0
  */
@@ -127,6 +127,7 @@ public class DefaultBootstrapContext implements ConfigurableBootstrapContext {
 	/**
 	 * Method to be called when {@link BootstrapContext} is closed and the
 	 * {@link ApplicationContext} is prepared.
+	 * 当BootstrapContext已经关闭并且上下文已经准备好时该方法被调用
 	 * @param applicationContext the prepared context
 	 */
 	public void close(ConfigurableApplicationContext applicationContext) {

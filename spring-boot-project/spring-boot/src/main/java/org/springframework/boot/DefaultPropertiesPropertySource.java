@@ -110,6 +110,7 @@ public class DefaultPropertiesPropertySource extends MapPropertySource {
 	/**
 	 * Move the 'defaultProperties' property source so that it's the last source in the
 	 * given {@link ConfigurableEnvironment}.
+	 * 移动defaultProperties属性资源所以他在给定的环境中是最后一个资源
 	 * @param environment the environment to update
 	 */
 	public static void moveToEnd(ConfigurableEnvironment environment) {

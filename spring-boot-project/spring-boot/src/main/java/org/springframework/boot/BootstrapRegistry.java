@@ -26,19 +26,23 @@ import org.springframework.util.Assert;
 /**
  * A simple object registry that is available during startup and {@link Environment}
  * post-processing up to the point that the {@link ApplicationContext} is prepared.
- * 
+ * 一个简单对象的注册表，可以在启动和环境后置处理过程中使用，直到应用上下文准备好
  * <p>
  * Can be used to register instances that may be expensive to create, or need to be shared
  * before the {@link ApplicationContext} is available.
+ * 可以用于注册实例，这些实例可能创建太昂贵或需要在应用上下文可用前被共享
  * <p>
  * The registry uses {@link Class} as a key, meaning that only a single instance of a
  * given type can be stored.
+ * 这个注册表使用类作为一个key，意味着只有一个简单的实例可以被存储通过给定的类型
  * <p>
  * The {@link #addCloseListener(ApplicationListener)} method can be used to add a listener
  * that can perform actions when {@link BootstrapContext} has been closed and the
  * {@link ApplicationContext} is fully prepared. For example, an instance may choose to
  * register itself as a regular Spring bean so that it is available for the application to
  * use.
+ * addCloseListenrt方法可以被用于添加监听者，这个监听者可以执行操作方启动上下文已经取消或应用上下文已完全准备好。
+ * 举个例子，一个实例可能选择注册自己成为一个常规的Spring bean 所以他对于应用来说是可用的
  *
  * @author Phillip Webb
  * @since 2.4.0
@@ -51,6 +55,7 @@ public interface BootstrapRegistry {
 	 * Register a specific type with the registry. If the specified type has already been
 	 * registered and has not been obtained as a {@link Scope#SINGLETON singleton}, it
 	 * will be replaced.
+	 * 通过注册表注册一个特定的类型。如果指定类型已经被注册且没有作为一个单例被获得，它将会被替代
 	 * @param <T> the instance type
 	 * @param type the instance type
 	 * @param instanceSupplier the instance supplier

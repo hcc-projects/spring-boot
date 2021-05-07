@@ -31,7 +31,7 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * A collection of {@link SpringApplicationRunListener}.
- *
+ * Spring应用执行监听者的集合
  * @author Phillip Webb
  */
 class SpringApplicationRunListeners {
@@ -49,6 +49,7 @@ class SpringApplicationRunListeners {
 		this.applicationStartup = applicationStartup;
 	}
 
+	//监听者发布启动中事件
 	void starting(ConfigurableBootstrapContext bootstrapContext, Class<?> mainApplicationClass) {
 		doWithListeners("spring.boot.application.starting", (listener) -> listener.starting(bootstrapContext),
 				(step) -> {
@@ -58,27 +59,33 @@ class SpringApplicationRunListeners {
 				});
 	}
 
+	//监听者发布环境准备完成事件
 	void environmentPrepared(ConfigurableBootstrapContext bootstrapContext, ConfigurableEnvironment environment) {
 		doWithListeners("spring.boot.application.environment-prepared",
 				(listener) -> listener.environmentPrepared(bootstrapContext, environment));
 	}
 
+	//监听者发布上下文准备完成事件
 	void contextPrepared(ConfigurableApplicationContext context) {
 		doWithListeners("spring.boot.application.context-prepared", (listener) -> listener.contextPrepared(context));
 	}
 
+	//监听者发布上下文加载完成事件
 	void contextLoaded(ConfigurableApplicationContext context) {
 		doWithListeners("spring.boot.application.context-loaded", (listener) -> listener.contextLoaded(context));
 	}
 
+	//监听者发布启动完成事件
 	void started(ConfigurableApplicationContext context) {
 		doWithListeners("spring.boot.application.started", (listener) -> listener.started(context));
 	}
 
+	//监听者发布运行中事件
 	void running(ConfigurableApplicationContext context) {
 		doWithListeners("spring.boot.application.running", (listener) -> listener.running(context));
 	}
 
+	//监听者发布失败事件
 	void failed(ConfigurableApplicationContext context, Throwable exception) {
 		doWithListeners("spring.boot.application.failed",
 				(listener) -> callFailedListener(listener, context, exception), (step) -> {
